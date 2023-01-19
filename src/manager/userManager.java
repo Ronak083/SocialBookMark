@@ -1,9 +1,14 @@
 package manager;
 
 import Entity.User;
+import dao.userDao;
 
 public class userManager {
     private static userManager instance = new userManager();
+    private static userDao dao = new userDao();
+    public User[] getUsers(){
+        return dao.getUser();
+    }
     private userManager(){
     }
     public static userManager getInstance(){
@@ -13,7 +18,7 @@ public class userManager {
         User user = new User();
         user.setId(id);
         user.setEmail(email);
-        user.setFisrtname(fisrtname);
+        user.setFirstname(fisrtname);
         user.setLastname(lastname);
         user.setGender(gender);
         user.setPassword(password);

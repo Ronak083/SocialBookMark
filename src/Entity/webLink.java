@@ -5,6 +5,14 @@ public class webLink extends Bookmark{
         return url;
     }
 
+    @Override
+    public String toString() {
+        return "webLink {" +
+                "url='" + url + '\'' +
+                ", host='" + host + '\'' +
+                '}';
+    }
+
     public void setUrl(String url) {
         this.url = url;
     }
