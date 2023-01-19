@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.Arrays;
+
 public class Movie extends Bookmark{
     public int getReleaseYear() {
         return releaseYear;
@@ -46,4 +48,15 @@ public class Movie extends Bookmark{
     private String[] direction;
     private String genre;
     private double imbdRating;
+
+    @Override
+    public String toString() {
+        return "Movie {" +
+                "releaseYear=" + releaseYear +
+                ", cast=" + Arrays.toString(cast) +
+                ", direction=" + Arrays.toString(direction) +
+                ", genre='" + genre + '\'' +
+                ", imbdRating=" + imbdRating +
+                '}';
+    }
 }

@@ -4,9 +4,14 @@ import Entity.Book;
 import Entity.Bookmark;
 import Entity.Movie;
 import Entity.webLink;
+import dao.bookmarkDao;
 
 public class bookMarkManager {
     private static bookMarkManager instance = new bookMarkManager();
+    private static bookmarkDao dao = new bookmarkDao();
+    public Bookmark[][] getBookmarkDao(){
+        return dao.getBookmarks();
+    }
     private bookMarkManager(){}
     public static bookMarkManager getInstance(){
         return instance;

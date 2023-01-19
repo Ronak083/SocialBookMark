@@ -1,6 +1,19 @@
 package Entity;
 
 public class User {
+    @Override
+    public String toString() {
+        return "User {" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", gender=" + gender +
+                '}';
+    }
+
     private long id;
     private String email;
 
@@ -28,12 +41,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFisrtname() {
-        return fisrtname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFisrtname(String fisrtname) {
-        this.fisrtname = fisrtname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -61,7 +74,7 @@ public class User {
     }
 
     private String password;
-    private String fisrtname;
+    private String firstname;
     private String lastname;
     private String usertype;
     private int gender;
