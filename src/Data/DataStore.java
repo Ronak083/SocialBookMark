@@ -1,5 +1,4 @@
 package Data;
-
 import Constants.Gender;
 import Constants.bookGenre;
 import Constants.movieGenre;
@@ -15,10 +14,16 @@ public class DataStore {
     public static final int BOOKMARK_TYPES_COUNT = 3;
     public static final int BOOKMARK_COUNT_PER_TYPE = 5;
     public static final int USER_BOOKMARK_LIMIT = 5;
-    private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
     private static User[] users = new User[TOTAL_USER_COUNT];
+    private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
     private static userBookmark[] userBookmarks = new userBookmark[TOTAL_USER_COUNT*USER_BOOKMARK_LIMIT];
+    public static Bookmark[][] getBookmarks() {
+        return bookmarks;
+    }
 
+    public static User[] getUsers() {
+        return users;
+    }
     public static void loadData(){
         loadUser();
         loadWeblink();
@@ -49,8 +54,8 @@ public class DataStore {
     private static void loadUser(){
         users[0] = userManager.getInstance().createUser(1000,"user0@semanticsquare.com","test","Ronak",  "Gupta", Gender.MALE, userType.USER);
         users[1] = userManager.getInstance().createUser(1001	,"user1@semanticsquare.com","test","John","Bairstrow", Gender.MALE,userType.USER);
-        users[3] = userManager.getInstance().createUser(1002,"user2@semanticsquare.com","test","Sam",  "Gill", Gender.MALE, userType.EDITOR);
-        users[4] = userManager.getInstance().createUser(1003	,"user3@semanticsquare.com","test","Kane","Bhai", Gender.MALE,userType.EDITOR);
-        users[5] = userManager.getInstance().createUser(1004	,"user4@semanticsquare.com","test","Angela","Yu", Gender.FEMALE,userType.CHIEF_EDITOR);
+        users[2] = userManager.getInstance().createUser(1002,"user2@semanticsquare.com","test","Sam",  "Gill", Gender.MALE, userType.EDITOR);
+        users[3] = userManager.getInstance().createUser(1003	,"user3@semanticsquare.com","test","Kane","Bhai", Gender.MALE,userType.EDITOR);
+        users[4] = userManager.getInstance().createUser(1004	,"user4@semanticsquare.com","test","Angela","Yu", Gender.FEMALE,userType.CHIEF_EDITOR);
     }
 }

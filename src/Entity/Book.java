@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.Arrays;
+
 public class Book extends Bookmark{
     public int getPublicationYear() {
         return publicationYear;
@@ -19,6 +21,17 @@ public class Book extends Bookmark{
 
     public String[] getAuthor() {
         return author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book {" +
+                "publicationYear=" + publicationYear +
+                ", publisher='" + publisher + '\'' +
+                ", author=" + Arrays.toString(author) +
+                ", genre='" + genre + '\'' +
+                ", amazonRating=" + amazonRating +
+                '}';
     }
 
     public void setAuthor(String[] author) {
