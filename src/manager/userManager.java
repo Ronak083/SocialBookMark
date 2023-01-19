@@ -6,10 +6,10 @@ public class userManager {
     private static userManager instance = new userManager();
     private userManager(){
     }
-    public userManager getInstance(){
+    public static userManager getInstance(){
         return instance;
     }
-    public User createUser(long id, String email, String password, String fisrtname, String lastname,String usertype,int gender){
+    public User createUser(long id, String email, String password, String fisrtname, String lastname,int gender,String usertype){
         User user = new User();
         user.setId(id);
         user.setEmail(email);

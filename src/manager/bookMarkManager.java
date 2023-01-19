@@ -1,6 +1,7 @@
 package manager;
 
 import Entity.Book;
+import Entity.Bookmark;
 import Entity.Movie;
 import Entity.webLink;
 
