@@ -44,12 +44,12 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getusertype() {
+        return usertype;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setusertype(String usertype) {
+        this.usertype = usertype;
     }
 
     public int getGender() {
@@ -63,7 +63,7 @@ public class User {
     private String password;
     private String fisrtname;
     private String lastname;
-    private String username;
+    private String usertype;
     private int gender;
 
 }
