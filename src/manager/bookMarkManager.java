@@ -1,9 +1,6 @@
 package manager;
 
-import Entity.Book;
-import Entity.Bookmark;
-import Entity.Movie;
-import Entity.webLink;
+import Entity.*;
 import dao.bookmarkDao;
 
 public class bookMarkManager {
@@ -50,6 +47,11 @@ public class bookMarkManager {
         return link;
     }
 
+    public void saveUserBookmark(User user, Bookmark bookmark) {
+        userBookmark usrBookmark = new userBookmark();
+        usrBookmark.setUser(user);
+        usrBookmark.setBookmark(bookmark);
 
-
+        dao.saveUserBookmark(usrBookmark);
+    }
 }
