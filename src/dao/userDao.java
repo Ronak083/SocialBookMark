@@ -1,8 +1,7 @@
 package dao;
 
-import Data.DataStore;
 import Entity.User;
-import static Data.DataStore.getUsers;
+import static Main.DataStore.getUsers;
 
 public class userDao {
     public User[] getUser(){

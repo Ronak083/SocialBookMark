@@ -1,4 +1,4 @@
-package Data;
+package Main;
 
 import Entity.Bookmark;
 import Entity.User;
@@ -10,11 +10,11 @@ public class Launch {
     private static Bookmark[][] bookmarks;
 
     private static void loadData() {
-        System.out.println("1. Loading Data......");
+        System.out.println("1. Loading Main......");
         DataStore.loadData();
         users = userManager.getInstance().getUsers();
         bookmarks = bookMarkManager.getInstance().getBookmarkDao();
-        System.out.println("Printing Data......");
+        System.out.println("Printing Main......");
         printUserData();
         printBookmarkData();
     }

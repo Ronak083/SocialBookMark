@@ -1,9 +1,8 @@
-package Data;
+package Main;
 
 import Controllers.BookmarkController;
 import Entity.Bookmark;
 import Entity.User;
-import manager.bookMarkManager;
 
 
 public class view {

@@ -1,6 +1,6 @@
 package dao;
 
-import Data.DataStore;
+import Main.DataStore;
 import Entity.Bookmark;
 import Entity.userBookmark;
 
