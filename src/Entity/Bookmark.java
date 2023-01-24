@@ -1,5 +1,5 @@
 package Entity;
-public class Bookmark {
+public abstract class Bookmark {
     public long getId() {
         return id;
     }
@@ -24,7 +24,7 @@ public class Bookmark {
         this.profileURL = profileURL;
     }
 
-    public boolean isKidFriendly();
+    public abstract boolean isKidFriendly();
     private long id;
     private String title;
     private String profileURL;

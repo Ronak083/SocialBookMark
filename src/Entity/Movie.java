@@ -1,5 +1,7 @@
 package Entity;
 
+import Constants.movieGenre;
+
 import java.util.Arrays;
 
 public class Movie extends Bookmark{
@@ -58,5 +60,13 @@ public class Movie extends Bookmark{
                 ", genre='" + genre + '\'' +
                 ", imbdRating=" + imbdRating +
                 '}';
+    }
+
+    @Override
+    public boolean isKidFriendly() {
+        if (genre.equals(movieGenre.HORROR) || genre.equals(movieGenre.THRILLERS)){
+            return false;
+        }
+        return true;
     }
 }

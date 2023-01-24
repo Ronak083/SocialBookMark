@@ -1,8 +1,10 @@
 package Entity;
 
+import Constants.bookGenre;
+
 import java.util.Arrays;
 
-public class Book extends Bookmark{
+public  class Book extends Bookmark{
     public int getPublicationYear() {
         return publicationYear;
     }
@@ -59,5 +61,11 @@ public class Book extends Bookmark{
     private String[] author;
     private String genre;
     private double amazonRating;
+    public boolean isKidFriendly(){
+        if (genre.equals(bookGenre.PHILOSOPHY) || genre.equals(bookGenre.SELFHELP)){
+            return false;
+        }
+        return true;
+    }
 
 }
