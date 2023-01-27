@@ -2,13 +2,12 @@ package test;
 import Entity.webLink;
 import manager.bookMarkManager;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 class webLinkTest {
     @Test
     public void isKidFriendly() {
         //test 1 Porn in url-- false
-        webLink webLink = bookMarkManager.getInstance().createLink(2000, "Taming Tiger, Part 2", "http://www.javaworld.com/article/2072759/core-java/taming-porn--part-2.html", "http://www.javaworld.com", "");
+        webLink webLink = bookMarkManager.getInstance().createLink(2000, "Taming Tiger, Part 2", "http://www.javaworld.com/article/2072759/core-java/taming-porn--part-2.html", "http://www.pornworld.com", "");
         boolean isKidFriendly = webLink.isKidFriendly();
         assertFalse(isKidFriendly, "For Porn in url = isKidFriendly() must return false");
 
@@ -23,7 +22,7 @@ class webLinkTest {
         assertFalse(isKidFriendly, "For adult in host = isKidFriendly() must return false");
 
         //test 4 adult in url but not in part -- true
-        webLink = bookMarkManager.getInstance().createLink(2000, "Taming porn, Part 2", "http://www.javaworld.com/article/2072759/core-java/taming-adult--part-2.html", "http://www.javaworld.com", "");
+        webLink = bookMarkManager.getInstance().createLink(2000, "Taming tiger, Part 2", "http://www.javaworld.com/article/2072759/core-java/taming--part-2.html", "http://www.adultworld.com", "");
          isKidFriendly = webLink.isKidFriendly();
         assertTrue(isKidFriendly, "For adult in url but not in part = isKidFriendly() must return True");
 

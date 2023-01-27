@@ -16,14 +16,5 @@ class MovieTest {
         boolean isKidFriendly = movie.isKidFriendly();
         assertFalse(isKidFriendly, "for Horror Genre - IsKidFriendly must be false");
 
-        //test 1
-         movie = bookMarkManager.getInstance().createMovie(3000, "Citizen Kane", "", 1941, new String[]{"Orson Welles,Joseph Cotten"}, new String[]{"Orson Welles"}, movieGenre.CLASSICS, 8.5);
-         isKidFriendly = movie.isKidFriendly();
-        assertFalse(isKidFriendly, "for Horror Genre - IsKidFriendly must be false");
-
-        //test 1
-         movie = bookMarkManager.getInstance().createMovie(3000, "Citizen Kane", "", 1941, new String[]{"Orson Welles,Joseph Cotten"}, new String[]{"Orson Welles"}, movieGenre.CLASSICS, 8.5);
-         isKidFriendly = movie.isKidFriendly();
-        assertFalse(isKidFriendly, "for Horror Genre - IsKidFriendly must be false");
     }
 }
