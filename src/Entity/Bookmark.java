@@ -24,8 +24,22 @@ public abstract class Bookmark {
         this.profileURL = profileURL;
     }
 
-    public abstract boolean isKidFriendly();
+    public boolean isKidFriendly() {
+        return false;
+    }
+
     private long id;
     private String title;
     private String profileURL;
+
+
+    public String getKidFriendlyStatus() {
+        return KidFriendlyStatus;
+    }
+
+    public void setKidFriendlyStatus(String kidFriendlyStatus) {
+        KidFriendlyStatus = kidFriendlyStatus;
+    }
+
+    private String KidFriendlyStatus = Constants.KidFriendlyStatus.UNKNOWN;
 }

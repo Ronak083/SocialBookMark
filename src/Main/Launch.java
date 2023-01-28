@@ -14,9 +14,9 @@ public class Launch {
         DataStore.loadData();
         users = userManager.getInstance().getUsers();
         bookmarks = bookMarkManager.getInstance().getBookmarkDao();
-        System.out.println("Printing Main......");
-        printUserData();
-        printBookmarkData();
+        //System.out.println("Printing Main......");
+        //printUserData();
+        //printBookmarkData();
     }
 
     private static void printUserData() {
@@ -33,18 +33,17 @@ public class Launch {
             }
             System.out.println();
         }
-
     }
 
     public static void main(String[] args) {
         loadData();
-        startBookmarking();
+        start();
     }
 
-    private static void startBookmarking() {
-        System.out.println("\n2. Bookmarking......");
+    private static void start() {
+        //System.out.println("\n2. Bookmarking......");
         for (User user : users){
-            view.bookmark(user, bookmarks);
+            view.browse(user, bookmarks);
         }
     }
 }
