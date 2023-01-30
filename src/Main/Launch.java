@@ -19,7 +19,7 @@ public class Launch {
         //printBookmarkData();
     }
 
-    private static void printUserData() {
+    /*private static void printUserData() {
         for (User u : users) {
             System.out.println(u);
         }
@@ -33,7 +33,7 @@ public class Launch {
             }
             System.out.println();
         }
-    }
+    }*/
 
     public static void main(String[] args) {
         loadData();
