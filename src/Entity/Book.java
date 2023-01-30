@@ -75,7 +75,7 @@ public  class Book extends Bookmark implements Shareable {
         builder.append("<item>");
         builder.append("<type>Book</type>");
         builder.append("<title>").append(getTitle()).append("</title>");
-        builder.append("<author>").append(StringUtils.join(author, ",")).append("</author>");
+        //builder.append("<author>").append(StringUtils.join(author, ",")).append("</author>");
         builder.append("<publisher>").append(publisher).append("</publisher>");
         builder.append("<publicationYear>").append(publicationYear).append("</publicationYear>");
         builder.append("<genre>").append(genre).append("</genre>");
