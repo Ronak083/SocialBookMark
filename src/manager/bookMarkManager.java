@@ -6,14 +6,19 @@ import dao.bookmarkDao;
 public class bookMarkManager {
     private static bookMarkManager instance = new bookMarkManager();
     private static bookmarkDao dao = new bookmarkDao();
-    public Bookmark[][] getBookmarkDao(){
+
+    public Bookmark[][] getBookmarkDao() {
         return dao.getBookmarks();
     }
-    private bookMarkManager(){}
-    public static bookMarkManager getInstance(){
+
+    private bookMarkManager() {
+    }
+
+    public static bookMarkManager getInstance() {
         return instance;
     }
-    public Movie createMovie(long id, String title, String profileURL, int releaseYear,String[] cast,String[] direction,String genre, double imbdRating){
+
+    public Movie createMovie(long id, String title, String profileURL, int releaseYear, String[] cast, String[] direction, String genre, double imbdRating) {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
@@ -26,7 +31,7 @@ public class bookMarkManager {
         return movie;
     }
 
-    public Book createBook(long id, String title, String profileURL, int publicationYear, String publisher, String[] author, String genre, double amazonRating){
+    public Book createBook(long id, String title, String profileURL, int publicationYear, String publisher, String[] author, String genre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
@@ -38,7 +43,7 @@ public class bookMarkManager {
         return book;
     }
 
-    public webLink createLink(long id, String title, String profileURL,String url,String host){
+    public webLink createLink(long id, String title, String profileURL, String url, String host) {
         webLink link = new webLink();
         link.setId(id);
         link.setTitle(title);
@@ -54,4 +59,21 @@ public class bookMarkManager {
 
         dao.saveUserBookmark(usrBookmark);
     }
+
+    public void setkidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+        bookmark.setKidFriendlyStatus(kidFriendlyStatus);
+        bookmark.setKidFriendlymarkBy(user);
+
+        System.out.println("Kid-friendly Status: " + kidFriendlyStatus + " Marked By: " + user.getEmail() + " , " + bookmark);
+    }
+
+    public void share(User user, Bookmark bookmark) {
+            bookmark.setSharedby(user);
+            System.out.println("Data to be Shared: ");
+            if (bookmark instanceof Book){
+                System.out.println(((Book) bookmark).getItemData());
+            } else if (bookmark instanceof webLink){
+                System.out.println(((webLink) bookmark).getItemData());
+            }
+        }
 }

@@ -32,6 +32,27 @@ public abstract class Bookmark {
     private String title;
     private String profileURL;
 
+    public User getSharedby() {
+        return Sharedby;
+    }
+
+    public void setSharedby(User sharedby) {
+        Sharedby = sharedby;
+    }
+
+    private User Sharedby;
+
+    public User getKidFriendlymarkBy() {
+        return kidFriendlymarkBy;
+    }
+
+    public void setKidFriendlymarkBy(User kidFriendlymarkBy) {
+        this.kidFriendlymarkBy = kidFriendlymarkBy;
+    }
+
+    private User kidFriendlymarkBy;
+
+
 
     public String getKidFriendlyStatus() {
         return KidFriendlyStatus;
