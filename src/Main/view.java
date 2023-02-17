@@ -38,11 +38,10 @@ public class view {
                     //Mark as kid-friendly
                     if (bookmark.isKidFriendly() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)){
                         String kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
-                        if(kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)){
+                        if(!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)){
                             BookmarkController.getInstance().setKidFriendlyStatus(user, kidFriendlyStatus, bookmark);
                         }
                     }
-
                     //Sharing
                     if(bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED)&& bookmark instanceof Shareable   ){
                         boolean isShared = getShareDecision();
