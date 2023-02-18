@@ -14,11 +14,11 @@ public class userManager {
     public static userManager getInstance(){
         return instance;
     }
-    public User createUser(long id, String email, String password, String fisrtname, String lastname,int gender,String usertype){
+    public User createUser(long id, String email, String password, String firstname, String lastname, int gender, String usertype){
         User user = new User();
         user.setId(id);
         user.setEmail(email);
-        user.setFirstname(fisrtname);
+        user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setGender(gender);
         user.setPassword(password);
