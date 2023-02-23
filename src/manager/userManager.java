@@ -3,10 +3,12 @@ package manager;
 import Entity.User;
 import dao.userDao;
 
+import java.util.List;
+
 public class userManager {
     private static userManager instance = new userManager();
     private static userDao dao = new userDao();
-    public User[] getUsers(){
+    public List<User> getUsers(){
         return dao.getUser();
     }
     private userManager(){

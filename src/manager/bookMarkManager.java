@@ -2,12 +2,18 @@ package manager;
 
 import Entity.*;
 import dao.bookmarkDao;
+import util.HttpConnect;
+import util.IOUtil;
+
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 public class bookMarkManager {
     private static bookMarkManager instance = new bookMarkManager();
     private static bookmarkDao dao = new bookmarkDao();
 
-    public Bookmark[][] getBookmarkDao() {
+    public List<List<Bookmark>> getBookmarkDao() {
         return dao.getBookmarks();
     }
 
@@ -51,12 +57,29 @@ public class bookMarkManager {
         link.setHost(host);
         return link;
     }
+    public List<List<Bookmark>> getBookmarks(){
+        return dao.getBookmarks();
+    }
 
     public void saveUserBookmark(User user, Bookmark bookmark) {
         userBookmark usrBookmark = new userBookmark();
         usrBookmark.setUser(user);
         usrBookmark.setBookmark(bookmark);
-
+        if (bookmark instanceof webLink) {
+            try {
+                String url = ((webLink)bookmark).getUrl();
+                if (!url.endsWith(".pdf")) {
+                    String webpage = HttpConnect.download(((webLink)bookmark).getUrl());
+                    if (webpage != null) {
+                        IOUtil.write(webpage, bookmark.getId());
+                    }
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
         dao.saveUserBookmark(usrBookmark);
     }
 
