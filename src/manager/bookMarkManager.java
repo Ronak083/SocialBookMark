@@ -1,6 +1,7 @@
 package manager;
 
 import Constants.bookGenre;
+import Constants.movieGenre;
 import Entity.*;
 import dao.bookmarkDao;
 import util.HttpConnect;
@@ -25,7 +26,7 @@ public class bookMarkManager {
         return instance;
     }
 
-    public Movie createMovie(long id, String title, String profileURL, int releaseYear, String[] cast, String[] direction, String genre, double imbdRating) {
+    public Movie createMovie(long id, String title, String profileURL, int releaseYear, String[] cast, String[] direction, movieGenre genre, double imbdRating) {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);

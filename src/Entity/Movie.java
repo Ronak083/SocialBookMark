@@ -30,11 +30,11 @@ public class Movie extends Bookmark  {
         this.direction = direction;
     }
 
-    public String getGenre() {
+    public movieGenre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(movieGenre genre) {
         this.genre = genre;
     }
 
@@ -49,7 +49,7 @@ public class Movie extends Bookmark  {
     private int releaseYear;
     private String[] cast;
     private String[] direction;
-    private String genre;
+    private movieGenre genre;
     private double imbdRating;
 
     @Override
