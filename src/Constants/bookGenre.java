@@ -12,7 +12,7 @@ public enum bookGenre {
       SELFHELP ("SelfHelp" ),
       TECHNICAL ("Technical" );
 
-      private bookGenre(String name) {
+       bookGenre(String name) {
         this.name = name;
     }
     private String name;

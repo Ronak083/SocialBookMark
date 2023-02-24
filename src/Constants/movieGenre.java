@@ -28,7 +28,7 @@ public enum movieGenre {
     DOCUMENTARIES("Documentaries"),
     FOREIGN_MOVIES("Foreign Movies");
 
-    private movieGenre(String classics) {
+    movieGenre(String name) {
         this.name = name;
     }
     private String name;

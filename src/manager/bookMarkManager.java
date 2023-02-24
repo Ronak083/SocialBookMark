@@ -1,5 +1,6 @@
 package manager;
 
+import Constants.KidFriendlyStatus;
 import Constants.bookGenre;
 import Constants.movieGenre;
 import Entity.*;
@@ -85,7 +86,7 @@ public class bookMarkManager {
         dao.saveUserBookmark(usrBookmark);
     }
 
-    public void setkidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+    public void setkidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookmark.setKidFriendlyStatus(kidFriendlyStatus);
         bookmark.setKidFriendlymarkBy(user);
 

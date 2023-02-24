@@ -1,5 +1,6 @@
 package Controllers;
 
+import Constants.KidFriendlyStatus;
 import Entity.Bookmark;
 import Entity.User;
 import manager.bookMarkManager;
@@ -18,7 +19,7 @@ public class BookmarkController {
         bookMarkManager.getInstance().saveUserBookmark(user, bookmark);
     }
 
-    public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+    public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookMarkManager.getInstance().setkidFriendlyStatus(user, kidFriendlyStatus, bookmark);
     }
 
