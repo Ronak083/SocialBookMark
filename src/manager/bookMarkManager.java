@@ -1,5 +1,6 @@
 package manager;
 
+import Constants.bookGenre;
 import Entity.*;
 import dao.bookmarkDao;
 import util.HttpConnect;
@@ -37,7 +38,7 @@ public class bookMarkManager {
         return movie;
     }
 
-    public Book createBook(long id, String title, String profileURL, int publicationYear, String publisher, String[] author, String genre, double amazonRating) {
+    public Book createBook(long id, String title, String profileURL, int publicationYear, String publisher, String[] author, bookGenre genre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);

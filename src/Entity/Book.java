@@ -1,5 +1,4 @@
 package Entity;
-
 import Constants.bookGenre;
 import org.junit.platform.commons.util.StringUtils;
 import partner.Shareable;
@@ -42,11 +41,11 @@ public  class Book extends Bookmark implements Shareable {
         this.author = author;
     }
 
-    public String getGenre() {
+    public bookGenre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(bookGenre genre) {
         this.genre = genre;
     }
 
@@ -61,7 +60,7 @@ public  class Book extends Bookmark implements Shareable {
     private int publicationYear;
     private String publisher;
     private String[] author;
-    private String genre;
+    private bookGenre genre;
     private double amazonRating;
     public boolean isKidFriendly(){
         if (genre.equals(bookGenre.PHILOSOPHY) || genre.equals(bookGenre.SELFHELP)){
