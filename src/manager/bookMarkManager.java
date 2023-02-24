@@ -68,7 +68,7 @@ public class bookMarkManager {
         userBookmark usrBookmark = new userBookmark();
         usrBookmark.setUser(user);
         usrBookmark.setBookmark(bookmark);
-        if (bookmark instanceof webLink) {
+        /*if (bookmark instanceof webLink) {
             try {
                 String url = ((webLink)bookmark).getUrl();
                 if (!url.endsWith(".pdf")) {
@@ -82,7 +82,7 @@ public class bookMarkManager {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         dao.saveUserBookmark(usrBookmark);
     }
 
