@@ -1,6 +1,8 @@
 package manager;
 
+import Constants.KidFriendlyStatus;
 import Constants.bookGenre;
+import Constants.movieGenre;
 import Entity.*;
 import dao.bookmarkDao;
 import util.HttpConnect;
@@ -25,7 +27,7 @@ public class bookMarkManager {
         return instance;
     }
 
-    public Movie createMovie(long id, String title, String profileURL, int releaseYear, String[] cast, String[] direction, String genre, double imbdRating) {
+    public Movie createMovie(long id, String title, String profileURL, int releaseYear, String[] cast, String[] direction, movieGenre genre, double imbdRating) {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
@@ -84,7 +86,7 @@ public class bookMarkManager {
         dao.saveUserBookmark(usrBookmark);
     }
 
-    public void setkidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+    public void setkidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookmark.setKidFriendlyStatus(kidFriendlyStatus);
         bookmark.setKidFriendlymarkBy(user);
 

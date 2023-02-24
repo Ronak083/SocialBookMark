@@ -51,7 +51,7 @@ public class DataStore {
             String[] values = row.split("\t");
             String[] cast = values[3].split(",");
             String[] directors = values[4].split(",");
-            Bookmark bookmark = bookMarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1], "", Integer.parseInt(values[2]), cast, directors, values[5], Double.parseDouble(values[6])/*, values[7]*/);
+            Bookmark bookmark = bookMarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1], "", Integer.parseInt(values[2]), cast, directors, movieGenre.valueOf(values[5]), Double.parseDouble(values[6])/*, values[7]*/);
             bookmarkList.add(bookmark);
         }
         bookmarks.add(bookmarkList);
