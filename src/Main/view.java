@@ -6,6 +6,8 @@ import Entity.Bookmark;
 import Entity.User;
 import partner.Shareable;
 
+import java.util.List;
+
 
 public class view {
     /*public static void bookmark(User user, Bookmark[][] bookmarks ) {
@@ -19,20 +21,18 @@ public class view {
         }
     }*/
 
-    public static void browse(User user, Bookmark[][] bookmarks ) {
+    public static void browse(User user, List<List<Bookmark>> bookmarks ) {
         System.out.println("\n" + user.getEmail() + " is browsing items....");
 
-        int bookmarkCount = 0;
-        for (Bookmark[] bookmarkList : bookmarks){
+        for (List<Bookmark> bookmarkList : bookmarks){
             for(Bookmark bookmark : bookmarkList){
-                if(bookmarkCount < DataStore.USER_BOOKMARK_LIMIT){
+                //if(bookmarkCount < DataStore.USER_BOOKMARK_LIMIT){
                     boolean isbookmarked = getBookmarkDecision(bookmark);
                     if (isbookmarked){
-                        bookmarkCount++;
                         BookmarkController.getInstance().saveUserBookmark(user, bookmark);
                         System.out.println("New item Bookmarked- " + bookmark);
                     }
-                }
+                //}
 
                 if (user.getusertype().equals(userType.EDITOR)  || user.getusertype().equals(userType.CHIEF_EDITOR)){
                     //Mark as kid-friendly

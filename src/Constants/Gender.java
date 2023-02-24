@@ -1,9 +1,15 @@
 package Constants;
 
-public class Gender {
-    private Gender(){}
-    public static final int MALE = 0;
-    public static final int FEMALE = 1;
-    public static final int TRANSGENDER = 2;
+public enum Gender {
+    MALE(0),
+    FEMALE(1),
+    TRANSGENDER(2);
 
+    private Gender(int s) {
+        this.value = s;
+    }
+    private int value;
+    public int getValue(){
+        return value;
+    }
 }
