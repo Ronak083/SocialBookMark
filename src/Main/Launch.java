@@ -1,6 +1,8 @@
 package Main;
 import Entity.Bookmark;
 import Entity.User;
+import bgJobs.WebPageDownloaderTask;
+import jdk.swing.interop.DispatcherWrapper;
 import manager.userManager;
 import manager.bookMarkManager;
 import java.util.List;
@@ -30,11 +32,16 @@ public class Launch {
     public static void main(String[] args) {
         loadData();
         start();
+        runDownloaderJob();
     }
     private static void start() {
         //System.out.println("\n2. Bookmarking......");
         for (User user : users){
             view.browse(user, bookmarks);
         }
+    }
+    private static void runDownloaderJob(){
+        WebPageDownloaderTask task = new WebPageDownloaderTask(true);
+        (new Thread(task)).start();
     }
 }
