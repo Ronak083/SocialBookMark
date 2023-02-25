@@ -1,8 +1,16 @@
 package Constants;
-public class userType {
-    private userType(){};
-    public static final String USER = "user";
-    public static final String EDITOR = "editor";
-    public static final String CHIEF_EDITOR = "chiefeditor";
+public enum userType {
+
+    USER( "user"),
+    EDITOR( "editor"),
+    CHIEF_EDITOR( "chiefeditor");
+
+    userType(String name){
+        this.name = name;
+    }
+    private String name;
+    public String getName(){
+        return name;
+    }
 
 }
