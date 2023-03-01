@@ -1,6 +1,6 @@
 package Main;
 import Constants.KidFriendlyStatus;
-import Constants.userType;
+import Constants.UserType;
 import Controllers.BookmarkController;
 import Entity.Bookmark;
 import Entity.User;
@@ -10,16 +10,6 @@ import java.util.List;
 
 
 public class view {
-    /*public static void bookmark(User user, Bookmark[][] bookmarks ) {
-        System.out.println("\n" + user.getEmail() + " is Bookmarking");
-        for (int i = 0 ; i< DataStore.USER_BOOKMARK_LIMIT; i++){
-            int typeOff = (int) (Math.random() * DataStore.BOOKMARK_TYPES_COUNT);
-            int bookmarkOff = (int) (Math.random() * DataStore.BOOKMARK_COUNT_PER_TYPE);
-            Bookmark bookmark =  bookmarks[typeOff][bookmarkOff];
-            BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-            System.out.println(bookmark);
-        }
-    }*/
 
     public static void browse(User user, List<List<Bookmark>> bookmarks ) {
         System.out.println("\n" + user.getEmail() + " is browsing items....");
@@ -33,8 +23,7 @@ public class view {
                         System.out.println("New item Bookmarked- " + bookmark);
                     }
                 //}
-
-                if (user.getusertype().equals(userType.EDITOR)  || user.getusertype().equals(userType.CHIEF_EDITOR)){
+                if (user.getusertype().equals(UserType.EDITOR)  || user.getusertype().equals(UserType.CHIEF_EDITOR)){
                     //Mark as kid-friendly
                     if (bookmark.isKidFriendly() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)){
                         KidFriendlyStatus kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
@@ -43,11 +32,9 @@ public class view {
                         }
                     }
                     //Sharing
-                    if(bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED)&& bookmark instanceof Shareable   ){
+                    if(bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED)&& bookmark instanceof Shareable){
                         boolean isShared = getShareDecision();
-                        if(isShared){
-                            BookmarkController.getInstance().share(user,bookmark);
-                        }
+                        if(isShared) BookmarkController.getInstance().share(user, bookmark);
                     }
                 }
             }
@@ -59,7 +46,6 @@ public class view {
     }
 
     private static KidFriendlyStatus getKidFriendlyStatusDecision(Bookmark bookmark) {
-
         return Math.random() < 0.4 ? KidFriendlyStatus.APPROVED : (Math.random() >= 0.4 && Math.random() < 0.8) ? KidFriendlyStatus.REJECTED : KidFriendlyStatus.UNKNOWN ;
     }
 

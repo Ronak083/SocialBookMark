@@ -1,6 +1,7 @@
 package manager;
 
 import Constants.Gender;
+import Constants.UserType;
 import Entity.User;
 import dao.userDao;
 
@@ -17,7 +18,7 @@ public class userManager {
     public static userManager getInstance(){
         return instance;
     }
-    public User createUser(long id, String email, String password, String firstname, String lastname, Gender gender, String usertype){
+    public User createUser(long id, String email, String password, String firstname, String lastname, Gender gender, UserType usertype){
         User user = new User();
         user.setId(id);
         user.setEmail(email);

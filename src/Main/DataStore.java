@@ -2,12 +2,13 @@ package Main;
 import Constants.Gender;
 import Constants.bookGenre;
 import Constants.movieGenre;
+import Constants.UserType;
 import Entity.Bookmark;
 import Entity.User;
 import Entity.userBookmark;
 import manager.bookMarkManager;
 import manager.userManager;
-import util.IOUtil;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class DataStore {
@@ -21,60 +22,101 @@ public class DataStore {
         return users;
     }
     public static void loadData() {
-        loadUser();
-        loadWeblink();
-        loadmovie();
-        loadbook();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SBA?useSSL=false","root","Rgupta083");
+            Statement stmt = conn.createStatement();){
+                   loadUsers(stmt);
+                   loadWeblinks(stmt);
+                   loadmovies(stmt);
+                   loadbooks(stmt);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-    private static void loadUser() {
-        List<String> data = new ArrayList<>();
-        IOUtil.read(data,"User");
-        for (String row : data ){
-            String[] values = row.split("\t");
+    private static void loadUsers(Statement stmt) throws SQLException {
+        String query = "Select * from User";
+        ResultSet rs = stmt.executeQuery(query);
 
-            Gender gender = Gender.MALE;
-            if(values[5].equals("f")){
-                gender = Gender.FEMALE;
-            } else if(values[5].equals("t")){
-                gender = Gender.TRANSGENDER;
-            }
+        while (rs.next()) {
+            long id = rs.getLong("id");
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            String firstname = rs.getString("first_name");
+            String lastname = rs.getString("last_name");
+            Gender gender = Gender.values()[rs.getInt("gender_id")];
+            UserType usertype = UserType.values()[rs.getInt("user_type_id")];
 
-            User user = userManager.getInstance().createUser(Long.parseLong(values[0]), values[1],values[2],values[3], values[4],gender, values[6]);
+            User user = userManager.getInstance().createUser(id,email,password,firstname,lastname,gender,usertype);
             users.add(user);
         }
     }
-    private static void loadWeblink() {
-        List<String> data = new ArrayList<>();
-        IOUtil.read(data, "WebLink");
+    private static void loadWeblinks(Statement stmt) throws SQLException {
+        String query = "Select * from WebLink";
+        ResultSet rs = stmt.executeQuery(query);
         List<Bookmark> bookmarkList = new ArrayList<>();
-        for (String row : data) {
-            String[] values = row.split("\t");
-            Bookmark bookmark = bookMarkManager.getInstance().createLink(Long.parseLong(values[0]), values[1], "",values[2], values[3]/*, values[4]*/);
+        while (rs.next()) {
+            long id = rs.getLong("id");
+            String title = rs.getString("title");
+            String profileUrl = "-";
+            String url = rs.getString("url");
+            String host = rs.getString("host");
+            Bookmark bookmark = bookMarkManager.getInstance().createLink(id, title, profileUrl,url,host/*, values[4]*/);
             bookmarkList.add(bookmark);
         }
         bookmarks.add(bookmarkList);
     }
-    private static void loadbook() {
-        List<String> data = new ArrayList<>();
-        IOUtil.read(data, "Book");
+    private static void loadbooks(Statement stmt) throws SQLException {
+        String query = "Select b.id, title, publication_year, p.name, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, amazon_rating, created_date " +
+                "from Book b, Publisher p, Author a, Book_Author ba \n" +
+                "where b.publisher_id = p.id and b.id = ba.book_id \n" +
+                "and ba.author_id = a.id group by b.id";
+                ResultSet rs = stmt.executeQuery(query);
         List<Bookmark> bookmarkList = new ArrayList<>();
-        for (String row : data) {
-            String[] values = row.split("\t");
-            String[] authors = values[4].split(",");
-            Bookmark bookmark = bookMarkManager.getInstance().createBook(Long.parseLong(values[0]), values[1] ,"",Integer.parseInt(values[2]), values[3], authors, bookGenre.valueOf(values[5]), Double.parseDouble(values[6])/*, values[7]*/);
+        while (rs.next()) {
+            long id = rs.getLong("id");
+            String title = rs.getString("title");
+            int publicationYear = rs.getInt("publication_year");
+            String publisher = rs.getString("name");
+            String[] authors = rs.getString("authors").split(",");
+            int genre_id = rs.getInt("book_genre_id");
+            bookGenre genre = bookGenre.values()[genre_id];
+            double amazonRating = rs.getDouble("amazon_rating");
+
+            Date createdDate = rs.getDate("Created_date");
+            System.out.println("createdDate: " + createdDate);
+            Timestamp timestamp = rs.getTimestamp(8);
+            System.out.println("timeStamp: " + timestamp);
+            System.out.println("LocaltimeStamp: " + timestamp.toLocalDateTime());
+            System.out.println("id: " + id + ", title: "+ title + ", publication year: " + publicationYear + ", publisher: " + publisher + ", authors" + authors + ", genre_id: " + genre_id +", genre: " + genre + ", amazonRating: "+ amazonRating);
+            Bookmark bookmark = bookMarkManager.getInstance().createBook(id, title, "-",publicationYear, publisher, authors, genre,amazonRating /*, */);
             bookmarkList.add(bookmark);
         }
         bookmarks.add(bookmarkList);
     }
-    private static void loadmovie() {
-        List<String> data = new ArrayList<>();
-        IOUtil.read(data, "Movie");
+    private static void loadmovies(Statement stmt) throws SQLException {
+        String query = "Select m.id, title, release_year, GROUP_CONCAT(DISTINCT a.name SEPARATOR ',') AS cast, GROUP_CONCAT(DISTINCT d.name SEPARATOR ',') AS directors, movie_genre_id, imdb_rating"
+                + " from Movie m, Actor a, Movie_Actor ma, Director d, Movie_Director md "
+                + "where m.id = ma.movie_id and ma.actor_id = a.id and "
+                + "m.id = md.movie_id and md.director_id = d.id group by m.id";
+        ResultSet rs = stmt.executeQuery(query);
         List<Bookmark> bookmarkList = new ArrayList<>();
-        for (String row : data) {
-            String[] values = row.split("\t");
-            String[] cast = values[3].split(",");
-            String[] directors = values[4].split(",");
-            Bookmark bookmark = bookMarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1], "", Integer.parseInt(values[2]), cast, directors, movieGenre.valueOf(values[5]), Double.parseDouble(values[6])/*, values[7]*/);
+        while (rs.next()) {
+            long id = rs.getLong("id");
+            String title = rs.getString("title");
+            int releaseYear = rs.getInt("release_year");
+            String[] cast = rs.getString("cast").split(",");
+            String[] directors = rs.getString("directors").split(",");
+            int genre_id = rs.getInt("movie_genre_id");
+            movieGenre genre = movieGenre.values()[genre_id];
+            double imdbRating = rs.getDouble("imdb_rating");
+
+            Bookmark bookmark = bookMarkManager.getInstance().createMovie(id, title, "", releaseYear, cast, directors, genre, imdbRating/*, values[7]*/);
             bookmarkList.add(bookmark);
         }
         bookmarks.add(bookmarkList);

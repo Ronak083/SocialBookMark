@@ -1,6 +1,7 @@
 package Entity;
 
 import Constants.Gender;
+import Constants.UserType;
 
 public class User {
     @Override
@@ -45,10 +46,10 @@ public class User {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public String getusertype() {
+    public UserType getusertype() {
         return usertype;
     }
-    public void setusertype(String usertype) {
+    public void setusertype(UserType usertype) {
         this.usertype = usertype;
     }
     public Gender getGender() {
@@ -63,7 +64,7 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
-    private String usertype;
+    private UserType usertype;
     private Gender gender;
 
 }

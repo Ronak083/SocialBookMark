@@ -1,5 +1,5 @@
 package bgJobs;
-
+import Entity.webLink.DownloadStatus;
 import Entity.webLink;
 import dao.bookmarkDao;
 import util.HttpConnect;
@@ -24,11 +24,11 @@ public class WebPageDownloaderTask implements Runnable{
         public T call(){
             try {
                 if (!weblink.getUrl().endsWith(".pdf")) {
-                    weblink.setDownloadStatus(webLink.DownloadStatus.FAILED);
+                    weblink.setDownloadStatus(DownloadStatus.FAILED);
                     String htmlPage = HttpConnect.download(weblink.getUrl());
                     weblink.setHtmlPage(htmlPage);
                 } else{
-                    weblink.setDownloadStatus(webLink.DownloadStatus.NOT_ELIGIBLE);
+                    weblink.setDownloadStatus(DownloadStatus.NOT_ELIGIBLE);
                 }
             } catch (MalformedURLException e){
                 e.printStackTrace();
@@ -55,7 +55,7 @@ public class WebPageDownloaderTask implements Runnable{
             try {
                 TimeUnit.SECONDS.sleep(15);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         downloadExecutor.shutdown();
@@ -82,13 +82,14 @@ public class WebPageDownloaderTask implements Runnable{
                             System.out.println("Web page not downloaded : "+ webLink.getUrl());
                     }
                 } else{
+                    future.cancel(true);
                     System.out.println("/n/nTasks is cancelled -->" + Thread.currentThread());
                 }
-
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+
             }
         }
     }

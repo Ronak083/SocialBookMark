@@ -45,6 +45,7 @@ public class bookMarkManager {
         book.setId(id);
         book.setTitle(title);
         book.setPublicationYear(publicationYear);
+        book.setProfileURL(profileURL);
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setGenre(genre);
@@ -56,6 +57,7 @@ public class bookMarkManager {
         webLink link = new webLink();
         link.setId(id);
         link.setTitle(title);
+        link.setProfileURL(profileURL);
         link.setUrl(url);
         link.setHost(host);
         return link;
@@ -89,6 +91,7 @@ public class bookMarkManager {
     public void setkidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookmark.setKidFriendlyStatus(kidFriendlyStatus);
         bookmark.setKidFriendlymarkBy(user);
+        dao.updateKidFriendlyStatus(bookmark);
 
         System.out.println("Kid-friendly Status: " + kidFriendlyStatus + " Marked By: " + user.getEmail() + " , " + bookmark);
     }
@@ -101,5 +104,6 @@ public class bookMarkManager {
             } else if (bookmark instanceof webLink){
                 System.out.println(((webLink) bookmark).getItemData());
             }
+            dao.sharedByInfo(bookmark);
         }
 }

@@ -70,16 +70,10 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../commons-lang3-3.12.0" />
+          <root url="jar://$MODULE_DIR$/../Java EE/Webpage/src/main/webapp/WEB-INF/mysql-connector-j-8.0.31.jar!/" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$MODULE_DIR$/../commons-lang3-3.12.0/apidocs" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../commons-lang3-3.12.0" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../commons-lang3-3.12.0" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../commons-lang3-3.12.0" recursive="false" type="SOURCES" />
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

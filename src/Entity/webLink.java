@@ -1,5 +1,4 @@
 package Entity;
-
 import org.junit.platform.commons.util.StringUtils;
 import partner.Shareable;
 public class webLink extends Bookmark implements Shareable {
